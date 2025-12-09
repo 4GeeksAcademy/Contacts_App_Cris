@@ -1,27 +1,26 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
+import Contacts from "./Contacts";
+import Contact from "./Contact";
+import CreateContact from "./CreateContact";
 
 //create your first component
 const Home = () => {
 	return (
-		<div className="text-center">
-            
-
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
+		<>
+			<BrowserRouter>
+				<NavBar />
+				<Routes>
+					<Route path={"/"} element={<Contacts />}/>
+					<Route path={"/Contact"} element={<Contact />}/>
+					<Route path={"/CreateContact"} element={<CreateContact />}/>
+				</Routes>
+				<Footer />
+			</BrowserRouter>
+		</>
 	);
 };
 
