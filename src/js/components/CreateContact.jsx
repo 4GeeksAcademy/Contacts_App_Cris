@@ -3,22 +3,22 @@ import { Link } from "react-router-dom";
 
 const CreateContact = () => {
 
-    const [datas, setDatas] = useState({
-        "name": "string",
-        "phone": "",
-        "email": "",
-        "address": ""
-    });
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [address, setAddress] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        fetch(`https://playground.4geeks.com/contact/agendas/Cristian/contacts`, {
+        const URL_CREAR_USUARIO = "https://playground.4geeks.com/contact/agendas"
+
+        fetch(`${URL_CREAR_USUARIO}/Cristian/contacts`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ contacts: { ...datas } })
+            body: JSON.stringify({ name, phone, email, address })
         })
             .then(res => {
                 if (!res.ok) {
@@ -34,10 +34,10 @@ const CreateContact = () => {
     };
 
     const handleChange = (event) => {
-        setDatas({
-            ...datas,
-            [event.target.name]: event.target.value
-        });
+        if (event.target.name === "Name") setName(event.target.value);
+        if (event.target.name === "Email") setEmail(event.target.value);
+        if (event.target.name === "Phone") setPhone(event.target.value);
+        if (event.target.name === "Address") setAddress(event.target.value);
     };
 
     return (
@@ -45,31 +45,27 @@ const CreateContact = () => {
             <form className="d-flex flex-column mx-5" onSubmit={handleSubmit}>
                 <input
                     type="text"
-                    value={datas.nombre}
-                    name="nombre"
+                    name="Name"
                     onChange={handleChange}
-                    placeholder="Nombre"
+                    placeholder="Name"
                 />
                 <input
                     type="text"
-                    value={datas.apellido}
-                    name="apellido"
+                    name="Email"
                     onChange={handleChange}
-                    placeholder="Apellidos"
+                    placeholder="example@gmail.com"
                 />
                 <input
-                    type="number"
-                    value={datas.numero}
-                    name="numero"
+                    type="text"
+                    name="Phone"
                     onChange={handleChange}
-                    placeholder="Número"
+                    placeholder="Phone"
                 />
                 <input
-                    type="email"
-                    value={datas.email}
-                    name="email"
+                    type="text"
+                    name="Address"
                     onChange={handleChange}
-                    placeholder="Email"
+                    placeholder="Address"
                 />
 
                 <button type="submit" className="m-3">Guardar contacto</button>
