@@ -32,7 +32,7 @@ const CreateContact = () => {
                 if (!res.ok) {
                     throw new Error('No se pudo crear el contacto')
                 }
-
+                alert("Se ha creado el contacto correctamente")
                 return res.json();
             })
             .then(newContact => setContacts([...contacts, newContact]))
@@ -43,7 +43,7 @@ const CreateContact = () => {
 
     return (
         <>
-            <form className="d-flex flex-column mx-5" onSubmit={handleSubmit}>
+            <form className="form-contact" onSubmit={handleSubmit}>
                 <input
                     type="text"
                     name="Name"
@@ -68,11 +68,11 @@ const CreateContact = () => {
                     onChange={(e) => setAddress(e.target.value)}
                     placeholder="Address"
                 />
-                    <button type="submit" className="m-3">Guardar contacto</button>
+                    <button type="submit" className="m-3 btn btn-primary">Guardar contacto</button>
             </form>
 
             <Link to={"/"}>
-                <button className="m-3">Volver atrás</button>
+                <button className="m-3 btn btn-primary">Volver atrás</button>
             </Link>
         </>
     );
