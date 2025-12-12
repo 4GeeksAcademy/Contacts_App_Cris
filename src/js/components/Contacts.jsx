@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AppContext } from "./AppContext";
 
 const Contacts = () => {
+    
     const [user, setUser] = useState("");
 
     const {
@@ -44,18 +45,6 @@ const Contacts = () => {
             .catch(err => console.error("Error:", err.message));
     };
 
-    const getAgenda = (name) => {
-        fetch(`${URL_CONSEGUIR_CONTACTS}/${name}`)
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error('No existe la agenda')
-                } else if (res.status === 422) {
-                    throw new Error('No se ha podido conseguir la agenda')
-                }
-            })
-            .then(data => { if (!user) setUser(data.name) })
-    }
-
 
     const getContacts = (name) => {
         if (!name) {
@@ -77,12 +66,6 @@ const Contacts = () => {
             .catch(err => console.error("Error al obtener contactos:", err.message), setContacts([]))
     }
 
-    /*useEffect(() => {
-        if (registeredUser) {
-            getContacts(registeredUser);
-        }
-    }, [registeredUser]);*/
-
     const handleSubmit = (event) => {
         event.preventDefault();
         createAgenda(user)
@@ -91,6 +74,7 @@ const Contacts = () => {
         setUser("");
 
     };
+
     return (
         <>
             {registeredUser && <div className="text-center">
@@ -98,13 +82,16 @@ const Contacts = () => {
             </div>
             }
             {!registeredUser && (
-                <div className="text-center my-5">
+                <div className="container-register">
+
+                <div className="text-center my-5">  
+                    <h1>Necesitar registrar primero tu nombre para crear la agenda.</h1>
                     <button
                         type="button"
                         className="btn btn-primary"
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal"
-                    >
+                        >
                         Registrate
                     </button>
 
@@ -114,19 +101,19 @@ const Contacts = () => {
                         tabIndex="-1"
                         aria-labelledby="exampleModalLabel"
                         aria-hidden="true"
-                    >
+                        >
                         <div className="modal-dialog">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                    <h1 className="modal-title fs-5" id="exampleModalLabel">
+                                    <h2 className="modal-title fs-5" id="exampleModalLabel">
                                         Registrate
-                                    </h1>
+                                    </h2>
                                     <button
                                         type="button"
                                         className="btn-close"
                                         data-bs-dismiss="modal"
                                         aria-label="Close"
-                                    ></button>
+                                        ></button>
                                 </div>
 
                                 <form onSubmit={handleSubmit}>
@@ -137,7 +124,7 @@ const Contacts = () => {
                                             onChange={(e) => setUser(e.target.value)}
                                             placeholder="Pon tu nombre"
                                             className="form-control"
-                                        />
+                                            />
                                     </div>
 
                                     <div className="modal-footer">
@@ -145,7 +132,7 @@ const Contacts = () => {
                                             type="submit"
                                             className="btn btn-primary"
                                             data-bs-dismiss="modal"
-                                        >
+                                            >
                                             Registrar
                                         </button>
                                     </div>
@@ -154,6 +141,7 @@ const Contacts = () => {
                         </div>
                     </div>
                 </div>
+            </div>
             )}
             {contacts.length > 0 &&
                 <div className="contacts-header">

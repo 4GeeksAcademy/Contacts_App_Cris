@@ -68,8 +68,7 @@ const CreateContact = () => {
                     onChange={(e) => setAddress(e.target.value)}
                     placeholder="Address"
                 />
-
-                <button type="submit" className="m-3">Guardar contacto</button>
+                    <button type="submit" className="m-3">Guardar contacto</button>
             </form>
 
             <Link to={"/"}>
