@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AppContext } from "./AppContext";
 
 const CreateContact = () => {
+
+    const {
+        registeredUser,
+        setRegisteredUser,
+        contacts,
+        setContacts
+    } = useContext(AppContext);
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -13,7 +21,7 @@ const CreateContact = () => {
 
         const URL_CREAR_USUARIO = "https://playground.4geeks.com/contact/agendas"
 
-        fetch(`${URL_CREAR_USUARIO}/Cristian/contacts`, {
+        fetch(`${URL_CREAR_USUARIO}/${registeredUser}/contacts`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -27,17 +35,10 @@ const CreateContact = () => {
 
                 return res.json();
             })
-            .then(data => console.log(data))
+            .then(newContact => setContacts([...contacts, newContact]))
             .catch(err => console.error(err))
 
 
-    };
-
-    const handleChange = (event) => {
-        if (event.target.name === "Name") setName(event.target.value);
-        if (event.target.name === "Email") setEmail(event.target.value);
-        if (event.target.name === "Phone") setPhone(event.target.value);
-        if (event.target.name === "Address") setAddress(event.target.value);
     };
 
     return (
@@ -46,25 +47,25 @@ const CreateContact = () => {
                 <input
                     type="text"
                     name="Name"
-                    onChange={handleChange}
+                    onChange={(e) => setName(e.target.value)}
                     placeholder="Name"
                 />
                 <input
                     type="text"
                     name="Email"
-                    onChange={handleChange}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="example@gmail.com"
                 />
                 <input
                     type="text"
                     name="Phone"
-                    onChange={handleChange}
+                    onChange={(e) => setPhone(e.target.value)}
                     placeholder="Phone"
                 />
                 <input
                     type="text"
                     name="Address"
-                    onChange={handleChange}
+                    onChange={(e) => setAddress(e.target.value)}
                     placeholder="Address"
                 />
 

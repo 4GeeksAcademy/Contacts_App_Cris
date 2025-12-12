@@ -9,9 +9,12 @@ import '../styles/index.css'
 
 // components
 import Home from './components/Home';
+import { AppProvider } from './components/AppContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Home/>
+    <AppProvider>
+      <Home />
+    </AppProvider>
   </React.StrictMode>,
 )
