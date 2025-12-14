@@ -187,3 +187,23 @@
 .form-contact button {
     align-self: flex-start;
 }
+
+.error-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 200px;
+}
+.error-title h1{
+    margin-right: 20px;
+    font-size: 200px;
+    color: #0066ff;
+    text-shadow: 10px 6px 10px rgb(36, 54, 125);
+}
+.error-title-text h2{
+    font-size: 50px;
+}
+.error-title-text h3{
+    margin: 10px 0 20px 0;
+}

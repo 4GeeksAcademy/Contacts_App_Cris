@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import Contacts from "./Contacts";
 import Contact from "./Contact";
 import CreateContact from "./CreateContact";
+import Error from "./Error";
 
 //create your first component
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
 					<Route path={"/"} element={<Contacts />}/>
 					<Route path={"/Contact"} element={<Contact />}/>
 					<Route path={"/CreateContact"} element={<CreateContact />}/>
+					<Route path={"*"} element={<Error />}/>
 				</Routes>
 				<Footer />
 			</BrowserRouter>

@@ -27,11 +27,13 @@ const Contacts = () => {
             .then(res => {
 
                 if (res.status === 400) {
+                    alert("La agenda ya esta creada, redirigiendo...")
                     console.error("La agenda ya existe (400)");
                     throw new Error("La agenda ya existe");
                 }
-
+                
                 if (!res.ok || res.status === 422) {
+                    alert("La agenda ya esta creada, redirigiendo...")
                     throw new Error("No se pudo crear la agenda");
                 }
                 alert("Se ha creado la agenda!")
