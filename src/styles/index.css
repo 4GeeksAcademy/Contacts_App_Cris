@@ -13,7 +13,7 @@
     border: solid 2px rgb(19, 109, 193);
     width: 800px;
     height: auto;
-    margin-left: 35%;
+    margin: auto;
     margin-top: 5%;
     border-radius: 10px;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);;
@@ -22,7 +22,40 @@
     font-size: 30px;
     margin-bottom: 50px;
 }
+.button-option, .button-trash{
+    border: 1px solid gray;
+}
+
+.options-card {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.button-option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    background-color: #28a745;
+    color: white;
+}
+
+.button-trash:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    background-color: #dc3545;
+    color: white;
+}
+
+.sign-out{
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    z-index: 1050;
+}
 .contacts-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -45,17 +78,23 @@
     box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-.button-option, .button-trash{
-    position: relative;
-    right: -520px;
-    top: -50px;
-    border: solid 1px gray
-}
-
-.button-option:hover, .button-trash:hover {
-    transform: translateY(-2px);
+.register-empty{
+    border: solid 2px rgb(19, 109, 193);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    height: 300px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
     box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
 }
+.register-empty button{
+    margin-top: 15px;
+}
+
+
 .contact-avatar {
     width: 90px;
     height: 90px;
@@ -121,20 +160,30 @@
 }
 
 
-.form-contact{
+.form-contact {
+    max-width: 420px;
+    margin: 40px auto;
     display: flex;
     flex-direction: column;
-    width: 70vw;
-    height: auto;
-    margin-left: 20vw;
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 10px;
-    border: solid 2px #0066ff;
+    gap: 24px;
 }
-.form-contact input{
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid black;
-    height: 35px;
+.form-contact input {
+    width: 100%;
+    padding: 10px 4px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 15px;
+    background: transparent;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+.form-contact input:focus {
+    border-bottom-color: #0d6efd;
+}
+.form-contact input::placeholder {
+    color: #aaa;
+    font-size: 14px;
+}
+.form-contact button {
+    align-self: flex-start;
 }

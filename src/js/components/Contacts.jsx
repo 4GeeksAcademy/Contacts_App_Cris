@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AppContext } from "./AppContext";
 
 const Contacts = () => {
-    
+
     const [user, setUser] = useState("");
 
     const {
@@ -34,7 +34,7 @@ const Contacts = () => {
                 if (!res.ok || res.status === 422) {
                     throw new Error("No se pudo crear la agenda");
                 }
-
+                alert("Se ha creado la agenda!")
                 console.log("Se creó la agenda correctamente. Status:", res.status);
                 return res.json();
             })
@@ -75,73 +75,86 @@ const Contacts = () => {
 
     };
 
+    const handleSignOut = () => {
+        alert("Se ha cerrado sesion");
+        setRegisteredUser("");
+        setContacts([]);
+        setUser("");
+    };
+
+
     return (
         <>
             {registeredUser && <div className="text-center">
                 <h1>{`Lista de ${registeredUser}`}</h1>
+                <div className="sign-out">
+                    <button className="btn btn-danger" onClick={handleSignOut}>
+                        Cerrar Sesión
+                    </button>
+                    </div>
             </div>
             }
             {!registeredUser && (
                 <div className="container-register">
 
-                <div className="text-center my-5">  
-                    <h1>Necesitar registrar primero tu nombre para crear la agenda.</h1>
-                    <button
-                        type="button"
-                        className="btn btn-primary"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"
+                    <div className="text-center my-5">
+                        <h1>Necesitar registrar primero tu nombre para crear la agenda.</h1>
+                        <button
+                            type="button"
+                            className="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
                         >
-                        Registrate
-                    </button>
+                            Registrate
+                        </button>
 
-                    <div
-                        className="modal fade"
-                        id="exampleModal"
-                        tabIndex="-1"
-                        aria-labelledby="exampleModalLabel"
-                        aria-hidden="true"
+                        <div
+                            className="modal fade"
+                            id="exampleModal"
+                            tabIndex="-1"
+                            aria-labelledby="exampleModalLabel"
+                            aria-hidden="true"
                         >
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h2 className="modal-title fs-5" id="exampleModalLabel">
-                                        Registrate
-                                    </h2>
-                                    <button
-                                        type="button"
-                                        className="btn-close"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close"
-                                        ></button>
-                                </div>
-
-                                <form onSubmit={handleSubmit}>
-                                    <div className="modal-body">
-                                        <input
-                                            type="text"
-                                            value={user}
-                                            onChange={(e) => setUser(e.target.value)}
-                                            placeholder="Pon tu nombre"
-                                            className="form-control"
-                                            />
-                                    </div>
-
-                                    <div className="modal-footer">
+                            <div className="modal-dialog">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h2 className="modal-title fs-5" id="exampleModalLabel">
+                                            Registrate
+                                        </h2>
                                         <button
-                                            type="submit"
-                                            className="btn btn-primary"
+                                            type="button"
+                                            className="btn-close"
                                             data-bs-dismiss="modal"
-                                            >
-                                            Registrar
-                                        </button>
+                                            aria-label="Close"
+                                        ></button>
                                     </div>
-                                </form>
+
+                                    <form onSubmit={handleSubmit}>
+                                        <div className="modal-body">
+                                            <input
+                                                type="text"
+                                                value={user}
+                                                onChange={(e) => setUser(e.target.value)}
+                                                placeholder="Pon tu nombre"
+                                                className="form-control"
+                                            />
+                                        </div>
+
+                                        <div className="modal-footer">
+                                            <button
+                                                type="submit"
+                                                className="btn btn-primary"
+                                                data-bs-dismiss="modal"
+                                            >
+                                                Registrar
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             )}
             {contacts.length > 0 &&
                 <div className="contacts-header">
@@ -180,10 +193,13 @@ const Contacts = () => {
 
 
             {contacts.length === 0 && registeredUser &&
-                <div className="text-center my-2">
-                    <p>No tienes contactos actualmente</p>
-                    <p>Si quieres crear un contacto debes ir a "Crear Contactos"</p>
-                    <p>En el boton de abajo</p>
+                <div className="register-empty text-center">
+                    <div>
+                        <p>No tienes contactos actualmente</p>
+                        <p>Si quieres crear un contacto debes ir a <b><i>"Crear Contactos"</i></b></p>
+                        <p>En el boton de abajo</p>
+                        <h3>👇</h3>
+                    </div>
                     <Link to={"/CreateContact"}>
                         <button className="btn btn-primary">Crear Usuario</button>
                     </Link>
