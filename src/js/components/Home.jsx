@@ -16,7 +16,7 @@ const Home = () => {
 				<NavBar />
 				<Routes>
 					<Route path={"/"} element={<Contacts />}/>
-					<Route path={"/Contact"} element={<Contact />}/>
+					<Route path={"/Contact/:contactId"} element={<Contact />}/>
 					<Route path={"/CreateContact"} element={<CreateContact />}/>
 					<Route path={"*"} element={<Error />}/>
 				</Routes>

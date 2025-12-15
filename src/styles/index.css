@@ -185,7 +185,7 @@
     font-size: 14px;
 }
 .form-contact button {
-    align-self: flex-start;
+    margin: auto;
 }
 
 .error-title{

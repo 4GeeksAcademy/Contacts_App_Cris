@@ -31,7 +31,7 @@ const Contacts = () => {
                     console.error("La agenda ya existe (400)");
                     throw new Error("La agenda ya existe");
                 }
-                
+
                 if (!res.ok || res.status === 422) {
                     alert("La agenda ya esta creada, redirigiendo...")
                     throw new Error("No se pudo crear la agenda");
@@ -93,14 +93,14 @@ const Contacts = () => {
                     <button className="btn btn-danger" onClick={handleSignOut}>
                         Cerrar Sesión
                     </button>
-                    </div>
+                </div>
             </div>
             }
             {!registeredUser && (
                 <div className="container-register">
 
                     <div className="text-center my-5">
-                        <h1>Necesitar registrar primero tu nombre para crear la agenda.</h1>
+                        <h1>Necesitas registrar primero tu nombre para crear la agenda.</h1>
                         <button
                             type="button"
                             className="btn btn-primary"
@@ -171,8 +171,9 @@ const Contacts = () => {
             }
 
             <div className="contacts-container">
-                {contacts.length > 0 && contacts.map((contact, i) => (
-                    <div className="contact-card" key={i}>
+                {contacts.length > 0 && contacts.map((contact) => (
+                    <div className="contact-card" key={contact.id}>
+
                         <img
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_4Uxp9EWg0qTCJVs6efAjd85UpcL9nfBuOQ&s"
                             alt={contact.name || "contact"}
@@ -186,9 +187,12 @@ const Contacts = () => {
                             <p className="contact-address"><span class="fa-solid fa-location-dot mx-2"></span>{contact.address}</p>
                         </div>
                         <div className="options-card">
-                            <button className="btn btn-secundary button-option"><span className="fa-solid fa-pencil"></span></button>
+                            <Link to={"/Contact/" + contact.id}>
+                                <button className="btn btn-secundary button-option"><span className="fa-solid fa-pencil"></span></button>
+                            </Link>
                             <button className="btn btn-secundary button-trash"><span className="fa-solid fa-trash-can"></span></button>
                         </div>
+
                     </div>
                 ))}
             </div>
