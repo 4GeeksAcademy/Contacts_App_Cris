@@ -84,6 +84,22 @@ const Contacts = () => {
         setUser("");
     };
 
+    const deleteContact = (name, id) => {
+        fetch(`${URL_CONSEGUIR_CONTACTS}/${name}/contacts/${id}`, {
+            method: "DELETE"
+        })
+            .then(res => {
+                if (res.status === 422) {
+                    throw new Error("No se pudo encontrar el contacto a elimiar")
+                }
+                if (!res.ok) {
+                    throw new Error("No se pudo eliminar el contacto")
+                }
+            })
+            .catch(err => console.error(err.message))
+    }
+
+
 
     return (
         <>
@@ -186,11 +202,11 @@ const Contacts = () => {
                             <p className="contact-phone"><span class="fa-solid fa-mobile-screen-button mx-2"></span>{contact.phone}</p>
                             <p className="contact-address"><span class="fa-solid fa-location-dot mx-2"></span>{contact.address}</p>
                         </div>
-                        <div className="options-card">
+                        <div className="options-card" key={contact.id}>
                             <Link to={"/Contact/" + contact.id}>
                                 <button className="btn btn-secundary button-option"><span className="fa-solid fa-pencil"></span></button>
                             </Link>
-                            <button className="btn btn-secundary button-trash"><span className="fa-solid fa-trash-can"></span></button>
+                            <button className="btn btn-secundary button-trash" onClick={() => deleteContact(registeredUser, contact.id)}><span className="fa-solid fa-trash-can"></span></button>
                         </div>
 
                     </div>
