@@ -9,201 +9,208 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
-.container-register{
-    border: solid 2px rgb(19, 109, 193);
-    width: 800px;
-    height: auto;
-    margin: auto;
-    margin-top: 5%;
-    border-radius: 10px;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);;
-}
-.container-register h1{
-    font-size: 30px;
-    margin-bottom: 50px;
-}
-.button-option, .button-trash{
-    border: 1px solid gray;
-}
-
-.options-card {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: flex;
-    gap: 8px;
-}
-
-.button-option:hover {
-    transform: translateY(-2px);
-    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
-    background-color: #28a745;
-    color: white;
-}
-
-.button-trash:hover {
-    transform: translateY(-2px);
-    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
-    background-color: #dc3545;
-    color: white;
-}
-
-.sign-out{
-    position: fixed;
-    top: 90px;
-    right: 20px;
-    z-index: 1050;
-}
-.contacts-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    width: 90%;
-    max-width: 800px;
-    margin: 20px auto;
-}
-.contact-card {
-    display: flex;
-    align-items: center;
-    background: #ffffff;
-    padding: 16px;
-    border-radius: 12px;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.12);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.contact-card:hover{
-    transform: translateY(-2px);
-    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-.register-empty{
-    border: solid 2px rgb(19, 109, 193);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    width: 700px;
-    height: 300px;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
-}
-.register-empty button{
-    margin-top: 15px;
-}
-
-
-.contact-avatar {
-    width: 90px;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 20px;
-    border: 2px solid #ddd;
-}
-.contact-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.contact-name {
-    font-size: 20px;
-    font-weight: 600;
-    margin: 0 0 8px 0;
+body {
+    background-color: #f4f6f9;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     color: #2d2d2d;
 }
 
-.contact-email,
-.contact-phone,
-.contact-address {
-    margin: 2px 0;
-    color: #555;
-    font-size: 15px;
+.navbar {
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
 }
-.contact-address {
-    font-size: 14px;
-    color: #777;
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.container-register {
+    width: 800px;
+    max-width: 95%;
+    margin: 80px auto;
+    padding: 40px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(0,0,0,.12);
+}
+
+.container-register h1 {
+    font-size: 28px;
+    margin-bottom: 40px;
 }
 
 .contacts-header {
     width: 90%;
     max-width: 800px;
-    margin: 20px auto 10px auto;
+    margin: 30px auto 10px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 }
 
-.contacts-header h2 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: 600;
-    color: #333;
-}
 .create-contact-btn {
-    background-color: #0066ff;
+    background: #0d6efd;
     color: white;
     border: none;
-    padding: 10px 16px;
+    padding: 10px 18px;
     border-radius: 8px;
-    cursor: pointer;
-    font-size: 15px;
     font-weight: 500;
-    transition: background-color 0.2s ease, transform 0.15s ease;
+    transition: all .15s ease;
 }
 
 .create-contact-btn:hover {
-    background-color: #0051cc;
+    background: #084edc;
     transform: translateY(-2px);
 }
 
+.contacts-container {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contact-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.12);
+    transition: all .15s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,.15);
+}
+
+.contact-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    border: 2px solid #e5e5e5;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.contact-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.contact-email,
+.contact-phone,
+.contact-address {
+    font-size: 14px;
+    color: #555;
+}
+
+.options-card {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.button-option {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: all .15s ease;
+}
+
+.button-option:hover {
+    background: #198754;
+    color: white;
+}
+
+.button-trash {
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+    color: white;
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: all .15s ease;
+}
+
+.button-trash:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0,0,0,.15);
+}
+
+
+.btn-volver {
+    margin-top: 10px;
+}
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px 0 2px 0;
+}
 
 .form-contact {
     max-width: 420px;
-    margin: 40px auto;
     display: flex;
+    margin-top: 20px;
     flex-direction: column;
-    gap: 24px;
+    gap: 26px;
 }
+
 .form-contact input {
-    width: 100%;
-    padding: 10px 4px;
     border: none;
     border-bottom: 1px solid #ccc;
-    font-size: 15px;
+    padding: 8px 4px;
     background: transparent;
+    font-size: 15px;
     outline: none;
-    transition: border-color 0.2s ease;
+    transition: border-color .2s ease;
 }
+
 .form-contact input:focus {
     border-bottom-color: #0d6efd;
 }
-.form-contact input::placeholder {
-    color: #aaa;
-    font-size: 14px;
-}
-.form-contact button {
-    margin: auto;
-}
 
-.error-title{
+.register-empty {
+    width: 700px;
+    max-width: 90%;
+    height: 280px;
+    margin: 80px auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.12);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: auto;
-    margin-top: 200px;
+    text-align: center;
 }
-.error-title h1{
-    margin-right: 20px;
-    font-size: 200px;
-    color: #0066ff;
-    text-shadow: 10px 6px 10px rgb(36, 54, 125);
+
+.sign-out {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    z-index: 1000;
 }
-.error-title-text h2{
-    font-size: 50px;
+
+footer, .fixed-bottom {
+    box-shadow: 0 -2px 8px rgba(0,0,0,.08);
 }
-.error-title-text h3{
-    margin: 10px 0 20px 0;
+h1{
+    margin: 30px 0 0 30px;
 }

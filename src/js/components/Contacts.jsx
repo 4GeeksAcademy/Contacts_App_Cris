@@ -10,7 +10,8 @@ const Contacts = () => {
         registeredUser,
         setRegisteredUser,
         contacts,
-        setContacts
+        setContacts,
+        getContacts
     } = useContext(AppContext);
 
 
@@ -47,27 +48,6 @@ const Contacts = () => {
             .catch(err => console.error("Error:", err.message));
     };
 
-
-    const getContacts = (name) => {
-        if (!name) {
-            console.warn("No se encuentra nombre de usuario para conseguir los contactos");
-            setContacts([]);
-            return;
-        }
-        fetch(`${URL_CONSEGUIR_CONTACTS}/${name}/contacts`)
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error("No se pudieron conseguir los contactos")
-                } else if (res.status === 422) {
-                    throw new Error("No se pudieron conseguir los contactos")
-                } else {
-                    return res.json();
-                }
-            })
-            .then(data => setContacts(Array.isArray(data) ? data : []))
-            .catch(err => console.error("Error al obtener contactos:", err.message), setContacts([]))
-    }
-
     const handleSubmit = (event) => {
         event.preventDefault();
         createAgenda(user)
@@ -84,22 +64,7 @@ const Contacts = () => {
         setUser("");
     };
 
-    const deleteContact = (name, id) => {
-        fetch(`${URL_CONSEGUIR_CONTACTS}/${name}/contacts/${id}`, {
-            method: "DELETE"
-        })
-            .then(res => {
-                if (res.status === 422) {
-                    throw new Error("No se pudo encontrar el contacto a elimiar")
-                }
-                if (!res.ok) {
-                    throw new Error("No se pudo eliminar el contacto")
-                }
-            })
-            .catch(err => console.error(err.message))
-    }
-
-
+    console.log(contacts)
 
     return (
         <>
@@ -206,7 +171,6 @@ const Contacts = () => {
                             <Link to={"/Contact/" + contact.id}>
                                 <button className="btn btn-secundary button-option"><span className="fa-solid fa-pencil"></span></button>
                             </Link>
-                            <button className="btn btn-secundary button-trash" onClick={() => deleteContact(registeredUser, contact.id)}><span className="fa-solid fa-trash-can"></span></button>
                         </div>
 
                     </div>

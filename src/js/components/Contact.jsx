@@ -20,7 +20,8 @@ const Contact = () => {
     registeredUser,
     setRegisteredUser,
     contacts,
-    setContacts
+    setContacts,
+    getContacts
   } = useContext(AppContext);
 
   useEffect(() => {
@@ -67,43 +68,69 @@ const Contact = () => {
       .catch(err => console.error(err));
   }
 
+  const deleteContact = (name, id) => {
+    fetch(`${URL_CREAR_USUARIO}/${name}/contacts/${id}`, {
+      method: "DELETE"
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("No se pudo eliminar el contacto");
+        }
+        alert("Se ha eliminado el contacto");
+      })
+      .then(() => {
+        getContacts(name);
+      })
+      .catch(err => console.error(err.message));
+  };
+
+
   return (
     <>
-      <form className="form-contact" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Name"
+      <h1>Edita tu contacto</h1>
+      <div className="form-wrapper">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_4Uxp9EWg0qTCJVs6efAjd85UpcL9nfBuOQ&s"
+          alt="contact"
+          className="contact-avatar"
         />
-        <input
-          type="text"
-          name="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="example@gmail.com"
-        />
-        <input
-          type="text"
-          name="Phone"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          placeholder="Phone"
-        />
-        <input
-          type="text"
-          name="Address"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          placeholder="Address"
-        />
-        <button type="submit" className="m-3 btn btn-primary">Guardar contacto</button>
-      </form>
+        <form className="form-contact" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Name"
+          />
+          <input
+            type="text"
+            name="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="example@gmail.com"
+          />
+          <input
+            type="text"
+            name="Phone"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="Phone"
+          />
+          <input
+            type="text"
+            name="Address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            placeholder="Address"
+          />
+          <button type="submit" className="m-3 btn btn-primary">Guardar contacto</button>
+        </form>
 
-      <Link to={"/"}>
-        <button className="btn-volver m-3 btn btn-danger">Volver atrás</button>
-      </Link>
+        <Link to={"/"}>
+          <button className="btn-volver m-3 btn btn-danger">Volver atrás</button>
+        </Link>
+        <button className="btn btn-danger button-trash" onClick={() => deleteContact(registeredUser, contactId)}><span className="fa-solid fa-trash-can"></span></button>
+      </div>
     </>
   )
 };
