@@ -21,7 +21,8 @@ const Contact = () => {
     setRegisteredUser,
     contacts,
     setContacts,
-    getContacts
+    getContacts,
+    createAgenda
   } = useContext(AppContext);
 
   useEffect(() => {

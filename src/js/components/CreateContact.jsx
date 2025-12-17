@@ -8,7 +8,9 @@ const CreateContact = () => {
         registeredUser,
         setRegisteredUser,
         contacts,
-        setContacts
+        setContacts,
+        getContacts,
+        createAgenda
     } = useContext(AppContext);
 
     const [name, setName] = useState("");
