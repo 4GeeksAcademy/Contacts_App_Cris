@@ -74,10 +74,11 @@ const Contact = () => {
       method: "DELETE"
     })
       .then(res => {
-        if (!res.ok) {
+        if (res.status === 500) {
           throw new Error("No se pudo eliminar el contacto");
+        }else{
+          alert("Se ha eliminado el contacto");
         }
-        alert("Se ha eliminado el contacto");
       })
       .then(() => {
         getContacts(name);
